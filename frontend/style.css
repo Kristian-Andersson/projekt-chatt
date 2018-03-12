@@ -1,16 +1,12 @@
 /* Below line is used for online Google font */
 
 @import url(http://fonts.googleapis.com/css?family=Raleway);
-<<<<<<< HEAD
-h2 {
-=======
 
 body {
     background-color:#171814;
 
 }
-h2 {   
->>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
+h2 {
     padding: 30px 35px;
     margin: -10px -50px;
     text-align: center;
@@ -99,12 +95,7 @@ input[type=button] {
     transition:0.5s;
     opacity:0.7;
     font-weight: 200;
-<<<<<<< HEAD
     font-family: 'Raleway', sans-serif;
-
-=======
-    font-family: 'Raleway', sans-serif;  
->>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
 }
 
 input[type=button]:hover {
@@ -112,7 +103,6 @@ input[type=button]:hover {
     transition:0.5s;
 }
 
-<<<<<<< HEAD
 /* chattsidan */
 .chattbox {
   margin: 0 auto;
@@ -123,6 +113,3 @@ input[type=button]:hover {
 .chattwrapper {
   width: 100%;
 }
-=======
-
->>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741

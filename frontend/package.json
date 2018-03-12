@@ -9,13 +9,9 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4"
-=======
-    "babel-core": "^6.26.0"
->>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 class Chatten extends React.Component {
   constructor(props) {
@@ -36,7 +35,3 @@ ReactDOM.render(
   <Chatten></Chatten>,
   document.getElementById('app')
  );
-=======
-ReactDOM.render(<div><input></input><input></input></div>, document.querySelector('#app'));
-
->>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
