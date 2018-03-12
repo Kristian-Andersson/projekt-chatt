@@ -1,7 +1,7 @@
 /* Below line is used for online Google font */
 
 @import url(http://fonts.googleapis.com/css?family=Raleway);
-h2 {   
+h2 {
     padding: 30px 35px;
     margin: -10px -50px;
     text-align: center;
@@ -91,10 +91,21 @@ input[type=button] {
     opacity:0.7;
     font-weight: 200;
     font-family: 'Raleway', sans-serif;
-    
+
 }
 
 input[type=button]:hover {
     opacity:1;
     transition:0.5s;
+}
+
+/* chattsidan */
+.chattbox {
+  margin: 0 auto;
+  border: 2px solid black;
+  height: 400px;
+  width: 800px;
+}
+.chattwrapper {
+  width: 100%;
 }
