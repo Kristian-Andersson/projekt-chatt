@@ -1,5 +1,4 @@
-# Hejsan
-
-hej.
-
-sss
+# MongoDB Databasnamn:
+chattdb
+# MongoDB Collection:
+users
