@@ -4,8 +4,11 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mongodb": "^3.0.4"
+    "mongodb": "^3.0.4",
+    "node-fetch-json": "0.0.3",
+    "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
