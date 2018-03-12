@@ -1,12 +1,23 @@
 /* Below line is used for online Google font */
 
 @import url(http://fonts.googleapis.com/css?family=Raleway);
+<<<<<<< HEAD
 h2 {
+=======
+
+body {
+    background-color:#171814;
+
+}
+h2 {   
+>>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
     padding: 30px 35px;
     margin: -10px -50px;
     text-align: center;
     border-radius: 10px 10px 0 0;
     font-weight: 200;
+    color:white;
+    font-family: 'Raleway', sans-serif;
 }
 
 hr {
@@ -27,32 +38,30 @@ div.main {
     margin:0 auto;
     width: 300px;
     padding: 10px 50px 25px;
-    border: 2px solid gray;
-    border-radius: 10px;
     font-family: raleway;
     margin-top:200px;
+    background-color:rgba(40, 40, 40, 0.4);
 }
 
 input[type=text],
 input[type=email] {
-    width: 100%;
+    width: 95%;
     height: 40px;
     padding: 5px;
     margin-bottom: 25px;
     margin-top: 5px;
     border: 2px solid #ccc;
     color: #4f4f4f;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
 }
 
 label {
-    color: #464646;
-    text-shadow: 0 1px 0 #fff;
+    color:white;
     font-size: 14px;
-    font-weight: bold;
+    font-weight:100;
     font-family: 'Raleway', sans-serif;
-    font-weight: 200;
 }
 
 center {
@@ -78,9 +87,9 @@ center {
 
 input[type=button] {
     font-size: 1.5em;
-    background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%);
-    border: 1px solid #e5a900;
-    color: black;
+    background: linear-gradient(45deg, rgba(32,145,153,1) 0%, rgba(0,128,128,1) 100%);
+    border: 1px solid rgba(40, 40, 40, 0.4);
+    color: white;
     font-weight: bold;
     cursor: pointer;
     width: 100%;
@@ -90,8 +99,12 @@ input[type=button] {
     transition:0.5s;
     opacity:0.7;
     font-weight: 200;
+<<<<<<< HEAD
     font-family: 'Raleway', sans-serif;
 
+=======
+    font-family: 'Raleway', sans-serif;  
+>>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
 }
 
 input[type=button]:hover {
@@ -99,6 +112,7 @@ input[type=button]:hover {
     transition:0.5s;
 }
 
+<<<<<<< HEAD
 /* chattsidan */
 .chattbox {
   margin: 0 auto;
@@ -109,3 +123,6 @@ input[type=button]:hover {
 .chattwrapper {
   width: 100%;
 }
+=======
+
+>>>>>>> 770856963bbdd0edc8c05c15ea62be7958d2e741
