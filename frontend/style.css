@@ -30,13 +30,14 @@ div.container {
     margin:0 auto;
 }
 
-div.main {
+.main {
     margin:0 auto;
     width: 300px;
     padding: 10px 50px 25px;
     font-family: raleway;
     margin-top:200px;
     background-color:rgba(40, 40, 40, 0.4);
+    height:350px;
 }
 
 input[type=text],
