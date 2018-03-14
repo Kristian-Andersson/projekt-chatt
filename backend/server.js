@@ -36,8 +36,22 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 // })
 
 
-// lägger till data i databasen
+// lägger till data i databasen för gruppchaten
 app.post('/', function (request, response) {
+  db.collection('users').insert(request.body,
+    function (result, error) {
+      if (error) {
+        response.status(500).send(error);
+        return;
+      } else {
+        response.send(result);
+      }
+    }
+  )
+});
+
+// lägger till data i databasen för privatchatten
+app.post('/privatchatt', function (request, response) {
   db.collection('users').insert(request.body,
     function (result, error) {
       if (error) {
