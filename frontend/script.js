@@ -1,5 +1,6 @@
 
-class Chatten extends React.Component {
+
+class ChattMsg extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -11,8 +12,7 @@ class Chatten extends React.Component {
     this.setState({ inputMessage: event.target.value });
   }
   render() {
-    return <div className="chattwrapper">
-      <div className="chattbox"></div>
+    return <div>
       <input onChange={this.onTextChange}></input>
       <button onClick={() => {
         fetch('http://localhost:3000/', {
@@ -23,15 +23,20 @@ class Chatten extends React.Component {
           method: 'POST'
         }).then(function (response) {
           return response.json();
-        }).then(function (result) {
-          console.log(result);
+        }).then(function msg(result) {
+          result.ops[0].message;
         });
       }}>Send</button>
-    </div>
+      </div>
   }
-}
+};
+
+
 
 ReactDOM.render(
-  <Chatten></Chatten>,
+  <div className="chattwrapper">
+  <div className="chattbox"><p>{this.msg()}</p></div>
+  <ChattMsg></ChattMsg>
+  </div>,
   document.getElementById('app')
  );
