@@ -9,7 +9,7 @@ var app = express();
 
 app.use(bodyParser.json());
 
-// pratar med databasen
+// pratar med databasen!!
 MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   if (error) {
     console.error('Failed to connect to the database!');

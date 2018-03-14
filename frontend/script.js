@@ -23,8 +23,8 @@ class ChattMsg extends React.Component {
           method: 'POST'
         }).then(function (response) {
           return response.json();
-        }).then(function msg(result) {
-          result.ops[0].message;
+        }).then(function (result) {
+          console.log(result.ops[0].message);
         });
       }}>Send</button>
       </div>
@@ -35,7 +35,7 @@ class ChattMsg extends React.Component {
 
 ReactDOM.render(
   <div className="chattwrapper">
-  <div className="chattbox"><p>{this.msg()}</p></div>
+  <div className="chattbox"><p></p></div>
   <ChattMsg></ChattMsg>
   </div>,
   document.getElementById('app')

@@ -1,8 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway);
 
-body {
+/* body {
     background-color:#171814;
-}
+} */
 
 hr {
     margin: 10px -50px;
@@ -80,7 +80,7 @@ center {
     color: black;
 }
 
-input[type=button] {
+button {
     font-size: 1.5em;
     background: linear-gradient(45deg, rgba(32,145,153,1) 0%, rgba(0,128,128,1) 100%);
     border: 1px solid rgba(40, 40, 40, 0.4);
@@ -97,7 +97,7 @@ input[type=button] {
     font-family: 'Raleway', sans-serif;
 }
 
-input[type=button]:hover {
+button:hover {
     opacity:1;
     transition:0.5s;
 }
