@@ -50,6 +50,19 @@ app.post('/', function (request, response) {
   )
 });
 
+app.post('/', function (request, response) {
+  db.collection('users').find(request.body,
+    function (result, error) {
+      if (error) {
+        response.status(500).send(error);
+        return;
+      } else {
+        response.send(result);
+      }
+    }
+  )
+});
+
 
 app.listen(3000, function () {
   console.log('The server is running.')
