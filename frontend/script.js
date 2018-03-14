@@ -24,7 +24,7 @@ class ChattMsg extends React.Component {
         }).then(function (response) {
           return response.json();
         }).then(function msg(result) {
-          result.ops[0].message;
+          console.log(result.ops[0].message);
         });
       }}>Send</button>
       </div>
