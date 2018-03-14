@@ -13,13 +13,11 @@
   background-color: #171814;
   height: 800px;
 }
-
 .chatt-input{
   background-color: #171814;
   height: 40px;
   margin: 5px 20%;
 }
-
 .input-field{
   height: 32px;
   width: 88%;
@@ -27,8 +25,6 @@
   font-family: 'Raleway', sans-serif;
   font-size: 15px;
 }
-
-
 .send-btn {
   font-family: 'Raleway', sans-serif;
   border-radius: 2px;
