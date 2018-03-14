@@ -12,9 +12,9 @@ class ChattMsg extends React.Component {
     this.setState({ inputMessage: event.target.value });
   }
   render() {
-    return <div>
-      <input onChange={this.onTextChange}></input>
-      <button onClick={() => {
+    return <div className="chatt-input">
+      <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
+      <button className="send-btn" onClick={() => {
         fetch('http://localhost:3000/', {
           body: '{ "message": "' + this.state.inputMessage + '"}',
           headers: {
@@ -24,7 +24,7 @@ class ChattMsg extends React.Component {
         }).then(function (response) {
           return response.json();
         }).then(function (result) {
-          console.log(result);
+        console.log(result.ops[0].message);
         });
       }}>Send</button>
       </div>

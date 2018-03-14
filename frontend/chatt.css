@@ -1,0 +1,37 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+/* chattsidan */
+.chattbox {
+  margin: 0 auto;
+  border: 2px solid white;
+  height: 400px;
+  width: 60%;
+  background-color: rgba(40, 40, 40, 0.4);
+}
+.chattwrapper {
+  width: 100%;
+  background-color: #171814;
+  height: 800px;
+}
+.chatt-input{
+  background-color: #171814;
+  height: 40px;
+  margin: 5px 20%;
+}
+.input-field{
+  height: 32px;
+  width: 88%;
+  color: black;
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+}
+.send-btn {
+  font-family: 'Raleway', sans-serif;
+  border-radius: 2px;
+  width: 10%;
+  color: white;
+  font-size: 15px;
+  margin-left: 5px;
+  height: 40px;
+  background-color: rgba(32,145,153,1)
+}
