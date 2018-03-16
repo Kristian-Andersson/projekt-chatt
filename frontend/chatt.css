@@ -6,7 +6,9 @@
   border: 2px solid white;
   height: 400px;
   width: 60%;
-  background-color: rgba(40, 40, 40, 0.4);
+  background-color: white;
+  padding: 1em;
+  overflow-y: scroll;
 }
 .chattwrapper {
   width: 100%;
@@ -34,4 +36,8 @@
   margin-left: 5px;
   height: 40px;
   background-color: rgba(32,145,153,1)
+}
+.chattbox > p {
+  font-family: 'Raleway', sans-serif;
+  padding-bottom: 2em;
 }
