@@ -38,9 +38,15 @@ app.use('/gruppchatt', express.static(path.join(__dirname, '..', 'frontend')));
 
 /*---------------------gruppchatten----------------------------------*/
 // lägger till data i databasen för gruppchatten
+<<<<<<< HEAD
 app.post('/api/gruppchatt', function (request, response) {
   db.collection('messages').insert(request.body,
     function (result, error) {
+=======
+app.post('/gruppchatt', function (request, response) {
+  db.collection('users').insert(request.body,
+    function (error, result) {
+>>>>>>> 40080f12a77179928b4dffcc3e19404159f17b57
       if (error) {
         response.status(500).send(error);
         return;

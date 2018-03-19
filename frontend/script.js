@@ -54,7 +54,11 @@ componentDidMount() {
 render() {
   return this.state.data.map(msg =>
       (
+<<<<<<< HEAD
           <p key={msg._id}>username: {msg.text}</p>
+=======
+          <p class="p-chatt-styling" key={msg._id}>Username: {msg.message}</p>
+>>>>>>> 40080f12a77179928b4dffcc3e19404159f17b57
       )
     )
   }
