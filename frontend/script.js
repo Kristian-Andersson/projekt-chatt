@@ -1,5 +1,5 @@
 
-
+// komponent för att lägga till meddelande i databasen som användaren skriver i inputfältet.
 class ChattMsg extends React.Component {
   constructor(props) {
     super();
@@ -15,8 +15,8 @@ class ChattMsg extends React.Component {
     return <div className="chatt-input">
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
-        fetch('http://localhost:3000/', {
-          body: '{ "message": "' + this.state.inputMessage + '"}',
+        fetch('/gruppchatt', {
+          body: '{ "message": "' + this.state.inputMessage + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -25,51 +25,37 @@ class ChattMsg extends React.Component {
           return response.json();
         }).then(function (result) {
           console.log(result.ops[0].message);
-        console.log(result.ops[0].message);
         });
       }}>Send</button>
       </div>
   }
 };
 
+// komponent för att hämta databas collection "users" och sedan skriva ut det i chattbox diven.
 class MsgOutput extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       data: []
-    }
+    };
   }
 
-  componentDidMount() {
-    fetch("http://localhost:3000/")
-      .then(response => response.json())
-      .then(findresponse => {
-        this.setState({
-          data: [findresponse]
-        });
-      })
-  }
+componentDidMount() {
+  fetch('/gruppchatt').then(function (response) {
+  return response.json();
+}).then(function (result) {
+  console.log(result[0].message);
+    this.setState({
+      data: result
+    });
+  }.bind(this))
+}
 
-  render() {
-    return (
-      <div>
-        {
-          this.state.data.map((dynamicData, index) => {
-            let keys = Object.keys(dynamicData);
-            let d = dynamicData;
-            return keys.map(data => {
-              return (
-                <div style={{borderBottom: '1px solid black'}}>
-                  <p>name: {dynamicData[data].name}</p>
-                  <p>population: {dynamicData[data].population}</p>
-                  <p>id: {dynamicData[data].id} </p>
-                </div>
-              );
-            });
-          })
-
-        }
-      </div>
+render() {
+  return this.state.data.map(msg =>
+      (
+          <p key={msg._id}>Username: {msg.message}</p>
+      )
     )
   }
 }
@@ -78,8 +64,10 @@ class MsgOutput extends React.Component {
 
 ReactDOM.render(
   <div className="chattwrapper">
-  <div className="chattbox"><p></p></div>
-  <ChattMsg></ChattMsg>
+    <div className="chattbox">
+      <MsgOutput></MsgOutput>
+    </div>
+    <ChattMsg></ChattMsg>
   </div>,
   document.getElementById('app')
  );
