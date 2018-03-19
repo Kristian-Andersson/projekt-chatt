@@ -54,7 +54,7 @@ componentDidMount() {
 render() {
   return this.state.data.map(msg =>
       (
-          <p key={msg._id}>Username: {msg.message}</p>
+          <p class="p-chatt-styling" key={msg._id}>Username: {msg.message}</p>
       )
     )
   }

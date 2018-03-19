@@ -45,6 +45,7 @@ class NameForm extends React.Component {
               <input name="password" id="password" type="text" value={this.state.value1} onChange={this.handlePassword}  />
               </label>
               <button type="submit" value="Submit" id="submit">Go!</button> 
+              <p class="inlogg-p">Inget konto? Klicka här!</p>
               </form>
           </div>
         </div>
