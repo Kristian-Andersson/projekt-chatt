@@ -16,7 +16,7 @@ class ChattMsg extends React.Component {
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
         fetch('/gruppchatt', {
-          body: '{ "message": "' + this.state.inputMessage + '" }',
+          body: '{ "userId": "ObjectID?", "text": "' + this.state.inputMessage + '", "time": "' + new Date() + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -24,7 +24,7 @@ class ChattMsg extends React.Component {
         }).then(function (response) {
           return response.json();
         }).then(function (result) {
-          console.log(result.ops[0].message);
+          console.log(result.ops[0].text);
         });
       }}>Send</button>
       </div>
@@ -41,10 +41,10 @@ class MsgOutput extends React.Component {
   }
 
 componentDidMount() {
-  fetch('/gruppchatt').then(function (response) {
+  fetch('/api/gruppchatt').then(function (response) {
   return response.json();
 }).then(function (result) {
-  console.log(result[0].message);
+  console.log(result);
     this.setState({
       data: result
     });
@@ -54,7 +54,7 @@ componentDidMount() {
 render() {
   return this.state.data.map(msg =>
       (
-          <p key={msg._id}>Username: {msg.message}</p>
+          <p key={msg._id}>username: {msg.text}</p>
       )
     )
   }

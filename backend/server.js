@@ -22,7 +22,7 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
 
 // express visar vad som finns inuti frontend mappen (så att localhost:3000/ får content som ligger i frontend)
 //när jag lägger till '/gruppchatt' så fungerar det inte att hämta datan från chattdb?
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+app.use('/gruppchatt', express.static(path.join(__dirname, '..', 'frontend')));
 
 // OBS! tar bort all data i databasen(fungerar ej..)
 // app.post('/', function (request, response) {
@@ -38,8 +38,8 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 /*---------------------gruppchatten----------------------------------*/
 // lägger till data i databasen för gruppchatten
-app.post('/gruppchatt', function (request, response) {
-  db.collection('users').insert(request.body,
+app.post('/api/gruppchatt', function (request, response) {
+  db.collection('messages').insert(request.body,
     function (result, error) {
       if (error) {
         response.status(500).send(error);
@@ -52,7 +52,31 @@ app.post('/gruppchatt', function (request, response) {
 });
 
 // skickar datan från chattdb till react gruppchatten
-app.get('/gruppchatt', function (request, response) {
+app.get('/api/gruppchatt', function (request, response) {
+  db.collection('messages').find({}).toArray(function (error, result) {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    }
+    response.send(result);
+  });
+});
+
+// users collection
+app.post('/api/gruppchatt', function (request, response) {
+  db.collection('users').insert(request.body,
+    function (result, error) {
+      if (error) {
+        response.status(500).send(error);
+        return;
+      } else {
+        response.send(result);
+      }
+    }
+  )
+});
+// users collection
+app.get('/api/gruppchatt', function (request, response) {
   db.collection('users').find({}).toArray(function (error, result) {
     if (error) {
       response.status(500).send(error);
