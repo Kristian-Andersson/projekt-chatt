@@ -39,6 +39,7 @@ app.use('/gruppchatt', express.static(path.join(__dirname, '..', 'frontend')));
 /*---------------------gruppchatten----------------------------------*/
 // lägger till data i databasen för gruppchatten
 app.post('/api/gruppchatt', function (request, response) {
+  db.collection('users').insert({ request.body, "time": new Date() }),
   db.collection('users').insert(request.body,
     function (error, result) {
       if (error) {
@@ -58,31 +59,13 @@ app.get('/api/gruppchatt', function (request, response) {
       response.status(500).send(error);
       return;
     }
-    response.send(result);
-  });
-});
-
-// users collection
-app.post('/api/gruppchatt', function (request, response) {
-  db.collection('users').insert(request.body,
-    function (result, error) {
+    db.collection('users').find({}).toArray(function (error, result2) {
       if (error) {
         response.status(500).send(error);
         return;
-      } else {
-        response.send(result);
       }
-    }
-  )
-});
-// users collection
-app.get('/api/gruppchatt', function (request, response) {
-  db.collection('users').find({}).toArray(function (error, result) {
-    if (error) {
-      response.status(500).send(error);
-      return;
-    }
-    response.send(result);
+      response.send({a: result, b: result2});
+    });
   });
 });
 

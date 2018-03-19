@@ -15,7 +15,7 @@ class ChattMsg extends React.Component {
     return <div className="chatt-input">
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
-        fetch('/gruppchatt', {
+        fetch('/api/gruppchatt', {
           body: '{ "userId": "ObjectID?", "text": "' + this.state.inputMessage + '", "time": "' + new Date() + '" }',
           headers: {
             'Content-Type': 'application/json'
@@ -41,6 +41,9 @@ class MsgOutput extends React.Component {
   }
 
 componentDidMount() {
+  setInterval(function () {
+
+
   fetch('/api/gruppchatt').then(function (response) {
   return response.json();
 }).then(function (result) {
@@ -48,7 +51,7 @@ componentDidMount() {
     this.setState({
       data: result
     });
-  }.bind(this))
+  }.bind(this)), 3000})
 }
 
 render() {
@@ -71,3 +74,23 @@ ReactDOM.render(
   </div>,
   document.getElementById('app')
  );
+
+
+// // gruppchatt.js:
+// module.exports = ChattMsg;
+//
+//
+// // I en annan fil:
+// // -----------------
+// // ett till exempel på hur man kan göra
+// module.exports = {
+//   ChattMsg: ChattMsg,
+//   MsgOutput: MsgOutput
+// };
+//
+// var ChattMsg = require('./gruppchatt').ChattMsg;
+// var MsgOutput = require('./gruppchatt').MsgOutput;
+//
+// // -----------------
+// // använd denna i index.js
+// var {ChattMsg, MsgOutput} = require('./gruppchatt');
