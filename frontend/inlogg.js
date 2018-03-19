@@ -23,10 +23,10 @@ class NameForm extends React.Component {
         }).then(function (result) {
           console.log(result.ops[0].message);
         });
-
+ 
         event.preventDefault();
     }
-  
+    
     render() {
       return (
         <div className="container">
@@ -34,7 +34,7 @@ class NameForm extends React.Component {
             <h2>Logga in på ProjektChatt</h2>
             <form onSubmit={this.handleSubmit}>
               <label>User Name :
-              <input name="username" id="username" type="text" value={this.state.value} onChange={this.handleChange} />
+              <input name="username" id="username" type="text" value={this.state.value} onChange={this.handleChange}  />
               </label>
               <button type="submit" value="Submit" id="submit">Go!</button> 
               </form>
@@ -49,5 +49,6 @@ console.log(NameForm);
   ReactDOM.render(
     <NameForm />,
     document.getElementById('app')
+    
   );
 

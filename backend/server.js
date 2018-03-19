@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 // lägger till data i databasen för gruppchaten
 app.post('/', function (request, response) {
   db.collection('users').insert(request.body,
-    function (result, error) {
+    function (error, result) {
       if (error) {
         response.status(500).send(error);
         return;
