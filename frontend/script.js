@@ -62,12 +62,11 @@ setInterval(function () {
   fetch('/api/gruppchatt').then(function (response) {
   return response.json();
 }).then(function (result) {
-  console.log(result);
     this.setState({
       data: result.messagesCollection
     });
-  })
-}.bind(this), 3000)
+  }.bind(this))
+}.bind(this), 500)
 }
 
 render() { // vet ej hur jag ska mappa två stycken arrayer så att den tar username från result.usersCollection.userName
