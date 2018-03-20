@@ -4,19 +4,33 @@ class ChattMsg extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      inputMessage: null
+      inputMessage: null,
+      id: []
     };
     this.onTextChange = this.onTextChange.bind(this);
   }
   onTextChange(event) {
     this.setState({ inputMessage: event.target.value });
   }
+
+  componentDidMount() {
+
+    fetch('/api/gruppchatt').then(function (response) {
+    return response.json();
+  }).then(function (result) {
+    console.log(result);
+      this.setState({
+        // vet ej hur man ska connecta med rätt id beroende på användare inloggad. om userName + passWord matchar något av "userName" + "passWord" i users collection = skickas vidare.? userName + passWord + userId sparas utöver i users collectionen, beroende på vem som är inloggad och används när det behövs hämtas? när användaren loggar ut raderas denna "utöver" datan och återskapas så fort användaren loggar in igen?
+        id: result.usersCollection[0]._id
+      });
+    }.bind(this))
+  }
   render() {
     return <div className="chatt-input">
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
         fetch('/api/gruppchatt', {
-          body: '{ "userId": "ObjectID?", "text": "' + this.state.inputMessage + '", "time": "' + new Date() + '" }',
+          body: '{ "userId": "' + this.state.id + '", "text": "' + this.state.inputMessage + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -24,7 +38,7 @@ class ChattMsg extends React.Component {
         }).then(function (response) {
           return response.json();
         }).then(function (result) {
-          console.log(result.ops[0].text);
+          console.log(result);
         });
       }}>Send</button>
       </div>
@@ -38,10 +52,11 @@ class MsgOutput extends React.Component {
     this.state = {
       data: []
     };
+
   }
 
 componentDidMount() {
-  setInterval(function () {
+setInterval(function () {
 
 
   fetch('/api/gruppchatt').then(function (response) {
@@ -49,16 +64,16 @@ componentDidMount() {
 }).then(function (result) {
   console.log(result);
     this.setState({
-      data: result
+      data: result.messagesCollection
     });
-  }.bind(this)), 3000})
+  })
+}.bind(this), 3000)
 }
 
-render() {
-  return this.state.data.map(msg =>
-      (
-          <p class="p-chatt-styling" key={msg._id}>Username: {msg.text}</p>
-      )
+render() { // vet ej hur jag ska mappa två stycken arrayer så att den tar username från result.usersCollection.userName
+  return this.state.data.map(function (msg) {
+    return <p className="p-chatt-styling" key={msg._id}>username: {msg.text}</p>;
+      }
     )
   }
 }
@@ -94,3 +109,10 @@ ReactDOM.render(
 // // -----------------
 // // använd denna i index.js
 // var {ChattMsg, MsgOutput} = require('./gruppchatt');
+
+
+
+// var usersObject = {};
+// usersObject = users.forEach(function (user) {
+//   usersObject[user._id] = user;
+// });

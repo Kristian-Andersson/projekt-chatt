@@ -7,7 +7,7 @@ class NameForm extends React.Component {
       this.handlePassword = this.handlePassword.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
-  
+
     handleUsername(event) {
       this.setState({value: event.target.value});
     }
@@ -15,9 +15,9 @@ class NameForm extends React.Component {
     handlePassword(event) {
       this.setState({value1: event.target.value});
     }
-  
+
     handleSubmit(event) {
-      fetch('http://localhost:3000/gruppchatt', {
+      fetch('/api/gruppchatt', {
           body: '{ "userName": "' + this.state.value + '", "passWord": "' + this.state.value1 + '"}',
           headers: {
             'Content-Type': 'application/json'
@@ -28,10 +28,10 @@ class NameForm extends React.Component {
         }).then(function (result) {
           console.log(result.ops[0].message);
         });
- 
+
         event.preventDefault();
     }
-    
+
     render() {
       return (
         <div className="container">
@@ -44,7 +44,7 @@ class NameForm extends React.Component {
               <label>Password :
               <input name="password" id="password" type="text" value={this.state.value1} onChange={this.handlePassword}  />
               </label>
-              <button type="submit" value="Submit" id="submit">Go!</button> 
+              <button type="submit" value="Submit" id="submit">Go!</button>
               <p class="inlogg-p">Inget konto? Klicka här!</p>
               </form>
           </div>
@@ -54,10 +54,9 @@ class NameForm extends React.Component {
   }
 
 console.log(NameForm);
-  
+
   ReactDOM.render(
     <NameForm />,
     document.getElementById('app')
-    
-  );
 
+  );
