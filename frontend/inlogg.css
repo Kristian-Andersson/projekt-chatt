@@ -25,7 +25,7 @@ div.container {
     font-family: raleway;
     margin-top:200px;
     background-color:rgba(40, 40, 40, 0.4);
-    height:350px;
+    height:360px;
 }
 
 input[type=text],
@@ -50,7 +50,8 @@ label {
 }
 
 .inlogg-p {
-    
+    color:white;
+    text-align:center;
 }
 
 h2 {
@@ -100,6 +101,7 @@ button {
     font-weight: 200;
     font-family: 'Raleway', sans-serif;
 }
+
 
 button:hover {
     opacity:1;
