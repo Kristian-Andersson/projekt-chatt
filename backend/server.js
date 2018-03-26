@@ -21,7 +21,7 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
 });
 
 // express visar vad som finns inuti frontend mappen (så att localhost:3000/ får content som ligger i frontend)
-//när jag lägger till '/gruppchatt' så fungerar det inte att hämta datan från chattdb?
+app.use('/', express.static(path.join(__dirname, '..', 'frontend')));
 app.use('/gruppchatt', express.static(path.join(__dirname, '..', 'frontend')));
 app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
 
@@ -36,6 +36,35 @@ app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
 //     }
 //   })
 // })
+
+
+/*-------------------------------inlogg---------------------------------*/
+
+app.post('/api/inlogg', function (request, response) {
+  db.collection('users').insert(request.body,
+    function (error, result) {
+      if (error) {
+        response.status(500).send(error);
+        return;
+      } else {
+        response.send(result);
+      }
+    }
+  )
+});
+
+app.get('/api/inlogg', function (request, response) {
+  db.collection('users').find({}).toArray(function (error, result) {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    } else {
+        response.send(result);
+      }
+    });
+  });
+
+// .forEach( function(myDoc) { print( myDoc._id ); } );
 
 /*---------------------gruppchatten----------------------------------*/
 // lägger till data i databasen för gruppchatten
@@ -53,51 +82,57 @@ app.post('/api/gruppchatt', function (request, response) {
 
 
 // skickar datan från chattdb till react gruppchatten
-app.get('/api/gruppchatt', function (request, response) {
-  db.collection('messages').find({}).toArray(function (error, result) {
-    if (error) {
-      response.status(500).send(error);
-      return;
-    }
-    db.collection('users').find({}).toArray(function (error, result2) {
-      if (error) {
-        response.status(500).send(error);
-        return;
-      }
-      response.send({messagesCollection: result, usersCollection: result2});
-    });
-  });
-});
+// app.get('/api/gruppchatt/', function (request, response) {
+//   db.collection('messages').find({}).toArray(function (error, result) {
+//     if (error) {
+//       response.status(500).send(error);
+//       return;
+//     }
+//     db.collection('users').find({}).toArray(function (error, result2) {
+//       if (error) {
+//         response.status(500).send(error);
+//         return;
+//       } else {
+//         response.send({messagesCollection: result, usersCollection: result2});
+//       }
+//     });
+//   });
+// });
+
+// var usersObject = {};
+// usersObject = result2.forEach(function (user) {
+//   usersObject[user._id] = user;
+// });
 
 
 /*--------------------------privatchatten---------------------------------*/
 // lägger till data i databasen för privatchatten
-app.post('/privatchatt', function (request, response) {
-  db.collection('users').insert(request.body,
-    function (result, error) {
-      if (error) {
-        response.status(500).send(error);
-        return;
-      } else {
-        response.send(result);
-      }
-    }
-  )
-});
-
-// skickar datan från chattdb till react privatchatten
-app.get('/privatchatt', function (request, response) {
-  db.collection('users').find(request.body,
-    function (result, error) {
-      if (error) {
-        response.status(500).send(error);
-        return;
-      } else {
-        response.send(result);
-      }
-    }
-  )
-});
+// app.post('/privatchatt', function (request, response) {
+//   db.collection('users').insert(request.body,
+//     function (error, result) {
+//       if (error) {
+//         response.status(500).send(error);
+//         return;
+//       } else {
+//         response.send(result);
+//       }
+//     }
+//   )
+// });
+//
+// // skickar datan från chattdb till react privatchatten
+// app.get('/privatchatt', function (request, response) {
+//   db.collection('users').find(request.body,
+//     function (error, result) {
+//       if (error) {
+//         response.status(500).send(error);
+//         return;
+//       } else {
+//         response.send(result);
+//       }
+//     }
+//   )
+// });
 
 
 app.listen(3000, function () {

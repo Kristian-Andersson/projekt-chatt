@@ -13,24 +13,12 @@ class ChattMsg extends React.Component {
     this.setState({ inputMessage: event.target.value });
   }
 
-  componentDidMount() {
-
-    fetch('/api/gruppchatt').then(function (response) {
-    return response.json();
-  }).then(function (result) {
-    console.log(result);
-      this.setState({
-        // vet ej hur man ska connecta med rätt id beroende på användare inloggad. om userName + passWord matchar något av "userName" + "passWord" i users collection = skickas vidare.? userName + passWord + userId sparas utöver i users collectionen, beroende på vem som är inloggad och används när det behövs hämtas? när användaren loggar ut raderas denna "utöver" datan och återskapas så fort användaren loggar in igen?
-        id: result.usersCollection[0]._id
-      });
-    }.bind(this))
-  }
   render() {
     return <div className="chatt-input">
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
         fetch('/api/gruppchatt', {
-          body: '{ "userId": "' + this.state.id + '", "text": "' + this.state.inputMessage + '" }',
+          body: '{ "userId": "ObjectID?", "text": "' + this.state.inputMessage + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -66,17 +54,16 @@ setInterval(function () {
       data: result.messagesCollection
     });
   }.bind(this))
-}.bind(this), 500)
+}.bind(this), 1000)
 }
 
-render() { // vet ej hur jag ska mappa två stycken arrayer så att den tar username från result.usersCollection.userName
+render() {
   return this.state.data.map(function (msg) {
-    return <p className="p-chatt-styling" key={msg._id}>username: {msg.text}</p>;
+    return <p className="p-chatt-styling" key={msg._id}>Username: {msg.text}</p>;
       }
     )
   }
 }
-
 
 
 ReactDOM.render(
