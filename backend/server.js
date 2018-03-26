@@ -20,19 +20,19 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   }
 });
 
-<<<<<<< HEAD
+
 // express visar vad som finns inuti frontend mappen
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
-=======
+
 // express visar vad som finns inuti frontend mappen (så att localhost:3000/ får content som ligger i frontend)
 app.use('/', express.static(path.join(__dirname, '..', 'frontend')));
 app.use('/gruppchatt', express.static(path.join(__dirname, '..', 'frontend')));
 app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
->>>>>>> bcc827ed17ca1eb8007a3f5970ab8a10391363ab
+
 
 // OBS! tar bort all data i databasen
 // app.post('/', function (request, response) {
-//   db.collection('users').remove({}, function (error, result) {
+//   db.collection('messages').remove({}, function (error, result) {
 //     if (error) {
 //       response.status(500).send(error);
 //       return;
@@ -43,14 +43,9 @@ app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
 // })
 
 
-<<<<<<< HEAD
-// lägger till data i databasen för gruppchaten
-app.post('/', function (request, response) {
-=======
 /*-------------------------------inlogg---------------------------------*/
 
 app.post('/api/inlogg', function (request, response) {
->>>>>>> bcc827ed17ca1eb8007a3f5970ab8a10391363ab
   db.collection('users').insert(request.body,
     function (error, result) {
       if (error) {
@@ -63,7 +58,7 @@ app.post('/api/inlogg', function (request, response) {
   )
 });
 
-<<<<<<< HEAD
+
 // lägger till data i databasen för privatchatten
 app.post('/privatchatt', function (request, response) {
   db.collection('users').insert(request.body,
@@ -77,7 +72,7 @@ app.post('/privatchatt', function (request, response) {
     }
   )
 });
-=======
+
 app.get('/api/inlogg', function (request, response) {
   db.collection('users').find({}).toArray(function (error, result) {
     if (error) {
@@ -89,7 +84,6 @@ app.get('/api/inlogg', function (request, response) {
     });
   });
 
-// .forEach( function(myDoc) { print( myDoc._id ); } );
 
 /*---------------------gruppchatten----------------------------------*/
 // lägger till data i databasen för gruppchatten
@@ -107,27 +101,16 @@ app.post('/api/gruppchatt', function (request, response) {
 
 
 // skickar datan från chattdb till react gruppchatten
-// app.get('/api/gruppchatt/', function (request, response) {
-//   db.collection('messages').find({}).toArray(function (error, result) {
-//     if (error) {
-//       response.status(500).send(error);
-//       return;
-//     }
-//     db.collection('users').find({}).toArray(function (error, result2) {
-//       if (error) {
-//         response.status(500).send(error);
-//         return;
-//       } else {
-//         response.send({messagesCollection: result, usersCollection: result2});
-//       }
-//     });
-//   });
-// });
-
-// var usersObject = {};
-// usersObject = result2.forEach(function (user) {
-//   usersObject[user._id] = user;
-// });
+app.get('/api/gruppchatt', function (request, response) {
+  db.collection('messages').find({}).toArray(function (error, result) {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    } else {
+        response.send(result);
+      }
+    });
+  });
 
 
 /*--------------------------privatchatten---------------------------------*/
@@ -158,7 +141,7 @@ app.post('/api/gruppchatt', function (request, response) {
 //     }
 //   )
 // });
->>>>>>> bcc827ed17ca1eb8007a3f5970ab8a10391363ab
+
 
 
 app.listen(3000, function () {

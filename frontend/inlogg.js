@@ -33,9 +33,7 @@ class NameForm extends React.Component {
 
       event.preventDefault();
 
-      localStorage.setItem("username", this.props.value);
-
-      location.href="http://localhost:3000/gruppchatt"
+      localStorage.setItem("username", this.state.value);
 
     }
 
@@ -58,7 +56,34 @@ class NameForm extends React.Component {
         </div>
       );
     }
-  }
+  };
+  class InloggHandler extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            data: []
+          };
+
+        }
+        componentDidMount() {
+          fetch('/api/inlogg').then(function (response) {
+            return response.json();
+          }).then(function (result) {
+            this.setState({
+              data: result
+            });
+          }
+        }
+          render() {
+            return this.state.result.map(inlogg) {
+              return inlogg.userName inlogg.passWord;
+            }
+          }
+        }
+
+// if (event.target.value == asd && event.target.value1 == asd)
+//   location.href="http://localhost:3000/gruppchatt"
+
 console.log(NameForm);
 
   ReactDOM.render(
