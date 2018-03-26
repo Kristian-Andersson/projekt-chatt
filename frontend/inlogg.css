@@ -2,7 +2,7 @@
 
 body {
     background-color:#171814;
-} 
+}
 
 hr {
     margin: 10px -50px;
@@ -47,6 +47,11 @@ label {
     font-size: 14px;
     font-weight:100;
     font-family: 'Raleway', sans-serif;
+}
+
+.inlogg-p {
+    color: white;
+    text-align: center;
 }
 
 h2 {

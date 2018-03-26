@@ -6,19 +6,21 @@ class ChattMsg extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      inputMessage: null
+      inputMessage: null,
+      id: []
     };
     this.onTextChange = this.onTextChange.bind(this);
   }
   onTextChange(event) {
     this.setState({ inputMessage: event.target.value });
   }
+
   render() {
     return <div className="chatt-input">
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
-        fetch('/gruppchatt', {
-          body: '{ "message": "' + this.state.inputMessage + '" }',
+        fetch('/api/gruppchatt', {
+          body: '{ "userId": "ObjectID?", "text": "' + this.state.inputMessage + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -26,7 +28,7 @@ class ChattMsg extends React.Component {
         }).then(function (response) {
           return response.json();
         }).then(function (result) {
-          console.log(result.ops[0].message);
+          console.log(result);
         });
       }}>Send</button>
       </div>
@@ -40,28 +42,30 @@ class MsgOutput extends React.Component {
     this.state = {
       data: []
     };
+
   }
 
 componentDidMount() {
-  fetch('/gruppchatt').then(function (response) {
+setInterval(function () {
+
+
+  fetch('/api/gruppchatt').then(function (response) {
   return response.json();
 }).then(function (result) {
-  console.log(result[0].message);
     this.setState({
-      data: result
+      data: result.messagesCollection
     });
   }.bind(this))
+}.bind(this), 1000)
 }
 
 render() {
-  return this.state.data.map(msg =>
-      (
-          <p key={msg._id}>Username: {msg.message}</p>
-      )
+  return this.state.data.map(function (msg) {
+    return <p className="p-chatt-styling" key={msg._id}>Username: {msg.text}</p>;
+      }
     )
   }
 }
-
 
 
 ReactDOM.render(
@@ -73,3 +77,30 @@ ReactDOM.render(
   </div>,
   document.getElementById('app')
  );
+
+
+// // gruppchatt.js:
+// module.exports = ChattMsg;
+//
+//
+// // I en annan fil:
+// // -----------------
+// // ett till exempel på hur man kan göra
+// module.exports = {
+//   ChattMsg: ChattMsg,
+//   MsgOutput: MsgOutput
+// };
+//
+// var ChattMsg = require('./gruppchatt').ChattMsg;
+// var MsgOutput = require('./gruppchatt').MsgOutput;
+//
+// // -----------------
+// // använd denna i index.js
+// var {ChattMsg, MsgOutput} = require('./gruppchatt');
+
+
+
+// var usersObject = {};
+// usersObject = users.forEach(function (user) {
+//   usersObject[user._id] = user;
+// });

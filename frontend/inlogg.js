@@ -2,18 +2,23 @@ class NameForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {value: ''};
-  
-      this.handleChange = this.handleChange.bind(this);
+      this.state = {value1: ''};
+      this.handleUsername = this.handleUsername.bind(this);
+      this.handlePassword = this.handlePassword.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
-  
-    handleChange(event) {
+
+    handleUsername(event) {
       this.setState({value: event.target.value});
     }
-  
+
+    handlePassword(event) {
+      this.setState({value1: event.target.value});
+    }
+
     handleSubmit(event) {
-      fetch('http://localhost:3000/', {
-          body: '{ "userName": "' + this.state.value + '"}',
+      fetch('/api/inlogg', {
+          body: '{ "userName": "' + this.state.value + '", "passWord": "' + this.state.value1 + '"}',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -26,7 +31,7 @@ class NameForm extends React.Component {
 
         event.preventDefault();
     }
-  
+
     render() {
       return (
         <div className="container">
@@ -34,9 +39,13 @@ class NameForm extends React.Component {
             <h2>Logga in på ProjektChatt</h2>
             <form onSubmit={this.handleSubmit}>
               <label>User Name :
-              <input name="username" id="username" type="text" value={this.state.value} onChange={this.handleChange} />
+              <input name="username" id="username" type="text" value={this.state.value} onChange={this.handleUsername}  />
               </label>
-              <button type="submit" value="Submit" id="submit">Go!</button> 
+              <label>Password :
+              <input name="password" id="password" type="text" value={this.state.value1} onChange={this.handlePassword}  />
+              </label>
+              <button type="submit" value="Submit" id="submit">Go!</button>
+              <p className="inlogg-p">Inget konto? Klicka här!</p>
               </form>
           </div>
         </div>
@@ -45,9 +54,9 @@ class NameForm extends React.Component {
   }
 
 console.log(NameForm);
-  
+
   ReactDOM.render(
     <NameForm />,
     document.getElementById('app')
-  );
 
+  );
