@@ -1,4 +1,6 @@
 
+
+
 // komponent för att lägga till meddelande i databasen som användaren skriver i inputfältet.
 class ChattMsg extends React.Component {
   constructor(props) {
