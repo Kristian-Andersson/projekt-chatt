@@ -9,7 +9,7 @@ var app = express();
 
 app.use(bodyParser.json());
 
-// pratar med databasen!!
+// pratar med databasen
 MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   if (error) {
     console.error('Failed to connect to the database!');
@@ -20,11 +20,10 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   }
 });
 
-// express visar vad som finns inuti frontend mappen (så att localhost:3000/ får content som ligger i frontend)
-//när jag lägger till '/gruppchatt' så fungerar det inte att hämta datan från chattdb?
+// express visar vad som finns inuti frontend mappen
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
-// OBS! tar bort all data i databasen(fungerar ej..)
+// OBS! tar bort all data i databasen
 // app.post('/', function (request, response) {
 //   db.collection('users').remove({}, function (error, result) {
 //     if (error) {
@@ -36,9 +35,9 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 //   })
 // })
 
-/*---------------------gruppchatten----------------------------------*/
-// lägger till data i databasen för gruppchatten
-app.post('/gruppchatt', function (request, response) {
+
+// lägger till data i databasen för gruppchaten
+app.post('/', function (request, response) {
   db.collection('users').insert(request.body,
     function (result, error) {
       if (error) {
@@ -51,36 +50,9 @@ app.post('/gruppchatt', function (request, response) {
   )
 });
 
-// skickar datan från chattdb till react gruppchatten
-app.get('/gruppchatt', function (request, response) {
-  db.collection('users').find({}).toArray(function (error, result) {
-    if (error) {
-      response.status(500).send(error);
-      return;
-    }
-    response.send(result);
-  });
-});
-
-
-/*--------------------------privatchatten---------------------------------*/
 // lägger till data i databasen för privatchatten
 app.post('/privatchatt', function (request, response) {
   db.collection('users').insert(request.body,
-    function (result, error) {
-      if (error) {
-        response.status(500).send(error);
-        return;
-      } else {
-        response.send(result);
-      }
-    }
-  )
-});
-
-// skickar datan från chattdb till react privatchatten
-app.get('/privatchatt', function (request, response) {
-  db.collection('users').find(request.body,
     function (result, error) {
       if (error) {
         response.status(500).send(error);
