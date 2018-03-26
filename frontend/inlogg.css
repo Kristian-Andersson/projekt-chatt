@@ -2,6 +2,7 @@
 
 body {
     background-color:#171814;
+    overflow-y:hidden;
 }
 
 hr {
@@ -23,7 +24,7 @@ div.container {
     width: 300px;
     padding: 10px 50px 25px;
     font-family: raleway;
-    margin-top:200px;
+    margin-top:150px;
     background-color:rgba(40, 40, 40, 0.4);
     height:360px;
 }
@@ -52,6 +53,7 @@ label {
 .inlogg-p {
     color: white;
     text-align: center;
+    margin-left:-25px;
 }
 
 h2 {
@@ -107,3 +109,78 @@ button:hover {
     opacity:1;
     transition:0.5s;
 }
+
+  html, body, .app {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  .popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+  }
+  .popup_inner {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    background: white;
+    border-radius:2px;
+    height:55%;
+    width:50%;
+  }
+
+  .popup_inner label {
+      color:black;
+  }
+
+  #popup-inputs {
+      margin:30px;
+  }
+
+  #popup-inputs button {
+    margin-top:-28px;
+  }
+
+  #close-me-button {
+      width:40px;
+      height:40px;
+      float:right;
+      line-height:5px;
+  }
+
+  #register-button {
+      width:15%;
+  }
+
+  #first-reg-button {
+    width:28%;
+    float:right;
+    margin-top:-40px;
+    margin-left:-30px;
+    height:30px;
+    line-height:10px;
+    font-size:1.2em;
+    font-weight:100;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+  #reg-username, #reg-password {
+      width:98%;
+  }
+
+  .user-name-reg {
+      
+  }
