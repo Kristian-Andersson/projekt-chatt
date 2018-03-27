@@ -19,7 +19,7 @@ class ChattMsg extends React.Component {
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
         fetch('/api/gruppchatt', {
-          body: '{ "sender": "' + localStorage.getItem("username") + '", "text": "' + this.state.inputMessage + '" }',
+          body: '{ "publicSender": "' + localStorage.getItem("username") + '", "publicText": "' + this.state.inputMessage + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -60,7 +60,7 @@ setInterval(function () {
 
 render() {
   return this.state.data.map(function (msg) {
-    return <p className="p-chatt-styling" key={msg._id}>{msg.sender}: {msg.text}</p>;
+    return <p className="p-chatt-styling" key={msg._id}>{msg.publicSender}: {msg.publicText}</p>;
       }
     )
   }

@@ -1,6 +1,6 @@
 class NameForm extends React.Component {
     constructor(props) {
-      super(props);
+      super();
       this.state = {
         value: '',
         value1: ''
@@ -59,7 +59,7 @@ class NameForm extends React.Component {
   };
   class InloggHandler extends React.Component {
         constructor(props) {
-          super(props);
+          super();
           this.state = {
             data: []
           };
@@ -72,19 +72,20 @@ class NameForm extends React.Component {
             this.setState({
               data: result
             });
-          }
+          }.bind(this))
         }
           render() {
-            return this.state.result.map(inlogg) {
-              return inlogg.userName inlogg.passWord;
+            return this.state.data.map(function (inlogg) {
+                if (this.state.value == inlogg.userName && this.state.value1 ==      inlogg.passWord) { return location.href="http://localhost:3000/gruppchatt";
+              } else {
+                alert('Fel Användarnamn eller Lösenord!');
+              }
+              })
             }
           }
-        }
 
-// if (event.target.value == asd && event.target.value1 == asd)
-//   location.href="http://localhost:3000/gruppchatt"
 
-console.log(NameForm);
+
 
   ReactDOM.render(
     <NameForm />,

@@ -59,19 +59,6 @@ app.post('/api/inlogg', function (request, response) {
 });
 
 
-// lägger till data i databasen för privatchatten
-app.post('/privatchatt', function (request, response) {
-  db.collection('users').insert(request.body,
-    function (result, error) {
-      if (error) {
-        response.status(500).send(error);
-        return;
-      } else {
-        response.send(result);
-      }
-    }
-  )
-});
 
 app.get('/api/inlogg', function (request, response) {
   db.collection('users').find({}).toArray(function (error, result) {
@@ -114,33 +101,32 @@ app.get('/api/gruppchatt', function (request, response) {
 
 
 /*--------------------------privatchatten---------------------------------*/
-// lägger till data i databasen för privatchatten
-// app.post('/privatchatt', function (request, response) {
-//   db.collection('users').insert(request.body,
-//     function (error, result) {
-//       if (error) {
-//         response.status(500).send(error);
-//         return;
-//       } else {
-//         response.send(result);
-//       }
-//     }
-//   )
-// });
-//
-// // skickar datan från chattdb till react privatchatten
-// app.get('/privatchatt', function (request, response) {
-//   db.collection('users').find(request.body,
-//     function (error, result) {
-//       if (error) {
-//         response.status(500).send(error);
-//         return;
-//       } else {
-//         response.send(result);
-//       }
-//     }
-//   )
-// });
+app.post('/api/privatchatt', function (request, response) {
+  db.collection('privmessages').update(request.body, { $set: { "time": new Date() } }, { upsert: true },
+    function (error, result) {
+      if (error) {
+        response.status(500).send(error);
+        return;
+      } else {
+        response.send(result);
+      }
+    }
+  )
+});
+
+
+
+app.get('/api/privatchatt', function (request, response) {
+  db.collection('privmessages').find({}).toArray(function (error, result) {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    } else {
+        response.send(result);
+      }
+    });
+  });
+
 
 
 
