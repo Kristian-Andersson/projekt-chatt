@@ -44,19 +44,22 @@ class NameForm extends React.Component {
             <h2>Logga in på ProjektChatt</h2>
             <form onSubmit={this.handleSubmit}>
               <label>User Name :
-              <input name="username" id="username" type="text" value={this.state.value} onChange={this.handleUsername}  />
+              <input name="username" id="username" type="text"  />
               </label>
               <label>Password :
-              <input name="password" id="password" type="text" value={this.state.value1} onChange={this.handlePassword}  />
+              <input name="password" id="password" type="text"  />
               </label>
               <button type="submit" value="Submit" id="submit">Go!</button>
-              <p className="inlogg-p">Inget konto? Klicka här!</p>
+              <p className="inlogg-p">Inget konto? Klicka </p>
               </form>
+            <Reg />
           </div>
-        </div>
+        </div>      
       );
     }
   };
+
+ /*
   class InloggHandler extends React.Component {
         constructor(props) {
           super();
@@ -75,6 +78,7 @@ class NameForm extends React.Component {
           }.bind(this))
         }
           render() {
+<<<<<<< HEAD
             return this.state.data.map(function (inlogg) {
                 if (this.state.value == inlogg.userName && this.state.value1 ==      inlogg.passWord) { return location.href="http://localhost:3000/gruppchatt";
               } else {
@@ -84,6 +88,16 @@ class NameForm extends React.Component {
             }
           }
 
+=======
+            return this.state.data.map(inlogg) {
+              return inlogg.userName + inlogg.passWord;
+            }
+          }
+        }
+*/
+// if (event.target.value == asd && event.target.value1 == asd)
+//   location.href="http://localhost:3000/gruppchatt"
+>>>>>>> 62ae3a913612f095e1c5c178ff83dd2afe674fb6
 
 
 

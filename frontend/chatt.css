@@ -48,6 +48,7 @@ table {
 
 body {
   background-color: #171814;
+  overflow:hidden;
 }
 
 .chattbox p {
@@ -62,23 +63,25 @@ body {
 
 .chattbox {
   margin: 0 auto;
-  height: 470px;
+  height: 70%;
   width: 100%;
   overflow-y: scroll;
   border-radius:2px;
   background-color:white;
-  box-shadow: inset -3px -8px 0px -6px rgba(0,0,0,0.75);
+  box-shadow: inset 0px -8px 0px -6px rgba(0,0,0,0.75);
 }
+
 .chattwrapper {
   width: 70%;
-  height: 800px;
+  height: 98vh;
   margin:0 auto;
   margin-top:50px;
+  overflow: hidden;
 }
 .chatt-input{
   background-color: #171814;
   height: 40px;
-  margin-top: 5px;
+  margin-top: 1px;
   display:flex;
 }
 .input-field{
@@ -97,7 +100,7 @@ body {
   width: 10%;
   color: white;
   font-size: 15px;
-  margin-left: 5px;
+  margin-left: 3px;
   height: 40px;
   background-color: rgba(32,145,153,1);
   border: 0;
@@ -113,4 +116,8 @@ body {
 .chattbox > p {
   font-family: 'Raleway', sans-serif;
   padding-bottom: 2em;
+}
+
+@media only screen and (max-width: 700px) {
+  
 }

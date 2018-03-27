@@ -20,10 +20,6 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   }
 });
 
-
-// express visar vad som finns inuti frontend mappen
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
-
 // express visar vad som finns inuti frontend mappen (så att localhost:3000/ får content som ligger i frontend)
 app.use('/', express.static(path.join(__dirname, '..', 'frontend')));
 app.use('/gruppchatt', express.static(path.join(__dirname, '..', 'frontend')));
@@ -41,7 +37,6 @@ app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
 //     }
 //   })
 // })
-
 
 /*-------------------------------inlogg---------------------------------*/
 
@@ -126,8 +121,6 @@ app.get('/api/privatchatt', function (request, response) {
       }
     });
   });
-
-
 
 
 app.listen(3000, function () {
