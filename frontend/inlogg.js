@@ -54,7 +54,7 @@ class NameForm extends React.Component {
               </form>
             <Reg />
           </div>
-        </div>      
+        </div>
       );
     }
   };
@@ -78,7 +78,6 @@ class NameForm extends React.Component {
           }.bind(this))
         }
           render() {
-<<<<<<< HEAD
             return this.state.data.map(function (inlogg) {
                 if (this.state.value == inlogg.userName && this.state.value1 ==      inlogg.passWord) { return location.href="http://localhost:3000/gruppchatt";
               } else {
@@ -88,17 +87,7 @@ class NameForm extends React.Component {
             }
           }
 
-=======
-            return this.state.data.map(inlogg) {
-              return inlogg.userName + inlogg.passWord;
-            }
-          }
-        }
 */
-// if (event.target.value == asd && event.target.value1 == asd)
-//   location.href="http://localhost:3000/gruppchatt"
->>>>>>> 62ae3a913612f095e1c5c178ff83dd2afe674fb6
-
 
 
   ReactDOM.render(
