@@ -66,21 +66,33 @@ render() {
   }
 };
 
-class Sidebar extends React.Component {
-  render(){
-    return <div className="container">
-            <h1>Friends</h1>
-            <div className="friendslist">
-                <ul>
-                    <li>Test1</li>
-                    <li>Test2</li>
-                    <li>Test3</li>
-                    <li>Test4</li>
-                </ul>
-            </div>
-      </div>
+class UsersList extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      usersData: []
+    };
   }
-};
+
+  componentDidMount() {
+      fetch('/api/inlogg').then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        this.setState({
+          usersData: result
+        });
+
+      }.bind(this))
+    }
+
+    render () {
+      return this.state.usersData.map(function (user) {
+                  return <li key={user._id}>{user.userName}</li>;
+                }
+              )
+            }
+}
+
 
 /* var Sidebar = createReactClass({
   render: function(){
@@ -101,6 +113,11 @@ class Sidebar extends React.Component {
 */
 ReactDOM.render(
   <div>
+  div className="user-list-wrapper">
+    <ul>
+      <UsersList></UsersList>
+    </ul>
+  </div>
   <div className="chattwrapper">
     <div className="chattbox">
     <MsgOutput></MsgOutput>
