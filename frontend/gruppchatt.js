@@ -65,16 +65,52 @@ render() {
       }
     )
   }
-}
+};
 
+class Sidebar extends React.Component {
+  render(){
+    return <div className="container">
+            <h1>Friends</h1>
+            <div className="friendslist">
+                <ul>
+                    <li>Test1</li>
+                    <li>Test2</li>
+                    <li>Test3</li>
+                    <li>Test4</li>
+                </ul>
+            </div>
+      </div>
+  }
+};
 
+/* var Sidebar = createReactClass({
+  render: function(){
+    return <div className="container">
+            <h1>Friends</h1>
+            <div className="friendslist">
+                <ul>
+                    <li>Test1</li>
+                    <li>Test2</li>
+                    <li>Test3</li>
+                    <li>Test4</li>
+                </ul>
+            </div>
+      </div>
+  }
+});
+
+*/
 ReactDOM.render(
+  <div>
   <div className="chattwrapper">
     <div className="chattbox">
-      <MsgOutput></MsgOutput>
+    <MsgOutput></MsgOutput>
     </div>
     <ChattMsg></ChattMsg>
-  </div>,
+   </div>
+   <Sidebar></Sidebar>
+
+   </div>,
   document.getElementById('app')
  );
 
