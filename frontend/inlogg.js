@@ -1,6 +1,6 @@
 class NameForm extends React.Component {
     constructor(props) {
-      super(props);
+      super();
       this.state = {
         value: '',
         value1: ''
@@ -33,9 +33,7 @@ class NameForm extends React.Component {
 
       event.preventDefault();
 
-      localStorage.setItem("username", this.props.value);
-
-      location.href="http://localhost:3000/gruppchatt"
+      localStorage.setItem("username", this.state.value);
 
     }
 
@@ -46,20 +44,51 @@ class NameForm extends React.Component {
             <h2>Logga in på ProjektChatt</h2>
             <form onSubmit={this.handleSubmit}>
               <label>User Name :
-              <input name="username" id="username" type="text" value={this.state.value} onChange={this.handleUsername}  />
+              <input name="username" id="username" type="text"  />
               </label>
               <label>Password :
-              <input name="password" id="password" type="text" value={this.state.value1} onChange={this.handlePassword}  />
+              <input name="password" id="password" type="text"  />
               </label>
               <button type="submit" value="Submit" id="submit">Go!</button>
-              <p className="inlogg-p">Inget konto? Klicka här!</p>
+              <p className="inlogg-p">Inget konto? Klicka </p>
               </form>
+            <Reg />
           </div>
         </div>
       );
     }
-  }
-console.log(NameForm);
+  };
+
+ /*
+  class InloggHandler extends React.Component {
+        constructor(props) {
+          super();
+          this.state = {
+            data: []
+          };
+
+        }
+        componentDidMount() {
+          fetch('/api/inlogg').then(function (response) {
+            return response.json();
+          }).then(function (result) {
+            this.setState({
+              data: result
+            });
+          }.bind(this))
+        }
+          render() {
+            return this.state.data.map(function (inlogg) {
+                if (this.state.value == inlogg.userName && this.state.value1 ==      inlogg.passWord) { return location.href="http://localhost:3000/gruppchatt";
+              } else {
+                alert('Fel Användarnamn eller Lösenord!');
+              }
+              })
+            }
+          }
+
+*/
+
 
   ReactDOM.render(
     <NameForm />,
