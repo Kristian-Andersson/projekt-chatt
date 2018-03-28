@@ -113,7 +113,7 @@ class UsersList extends React.Component {
 */
 ReactDOM.render(
   <div>
-  div className="user-list-wrapper">
+  <div className="user-list-wrapper">
     <ul>
       <UsersList></UsersList>
     </ul>
