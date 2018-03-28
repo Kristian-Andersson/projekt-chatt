@@ -117,13 +117,20 @@ body {
 }
 
 /*Users listan*/
+
 .user-list-wrapper {
-	width: 15%;
-	color: white;
-	display: inline-block;
-	margin: 1em;
-	font-family: 'Raleway';
+	float: right;
+	width: 20%;
+	height: 470px;
+	background-color: white;
+	margin-top: 90px;
+	margin-right: 30px;
+	font-family: 'Raleway', sans-serif;
 }
+
 .user-list-wrapper > ul > li {
-	padding-bottom: 1em;
+	font-size: 1em;
+	margin-left: 20px;
+	margin-top: 15px;
+	font-family: 'Raleway', sans-serif;
 }
