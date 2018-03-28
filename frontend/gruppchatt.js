@@ -124,8 +124,6 @@ ReactDOM.render(
     </div>
     <ChattMsg></ChattMsg>
    </div>
-   <Sidebar></Sidebar>
-
    </div>,
   document.getElementById('app')
  );
