@@ -79,7 +79,7 @@ class NameForm extends React.Component {
         }
           render() {
             return this.state.data.map(function (inlogg) {
-                if (this.state.value == inlogg.userName && this.state.value1 ==      inlogg.passWord) { return location.href="http://localhost:3000/gruppchatt";
+                if (this.state.value == inlogg.userName && this.state.value1 == inlogg.passWord) { return location.href="http://localhost:3000/gruppchatt";
               } else {
                 alert('Fel Användarnamn eller Lösenord!');
               }

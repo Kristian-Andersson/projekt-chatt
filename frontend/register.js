@@ -25,11 +25,11 @@ class Popup extends React.Component {
         method: 'POST'
       }).then(function (response) {
         return response.json();
-      }).then(function (result) {
-        console.log(result.ops[0].message);
       });
 
       event.preventDefault();
+      location.href='http://localhost:3000/inlogg.html';
+
   }
     render() {
       return (
@@ -37,13 +37,13 @@ class Popup extends React.Component {
           <div className='popup_inner'>
           <form onSubmit={this.handleSubmit}>
           <div id="popup-inputs">
-              <label class="user-name-reg">User Name :
+              <label className="user-name-reg">User Name :
               <button id="close-me-button" onClick={this.props.closePopup}>X</button>
               <input name="username" id="reg-username" type="text" value={this.state.value} onChange={this.handleUsername}   />
               </label>
               <label>Password :
               <input name="password" id="reg-password" type="text" value={this.state.value1} onChange={this.handlePassword}   />
-              </label>             
+              </label>
               <button id="register-button" type="submit" value="Submit" id="submit">Register</button>
               </div>
               </form>
@@ -69,14 +69,12 @@ class Popup extends React.Component {
       return (
         <div className='reg'>
           <button id="first-reg-button" onClick={this.togglePopup.bind(this)}>Här</button>
-          {this.state.showPopup ? 
+          {this.state.showPopup ?
             <Popup
-              closePopup={this.togglePopup.bind(this)}/>       
+              closePopup={this.togglePopup.bind(this)}/>
             : null
           }
         </div>
       );
     }
   };
-
- 
