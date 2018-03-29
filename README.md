@@ -2,3 +2,5 @@
 chattdb
 # MongoDB Collection:
 users
+messages
+privmessages

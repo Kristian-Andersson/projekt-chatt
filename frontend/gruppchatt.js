@@ -6,8 +6,7 @@ class ChattMsg extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      inputMessage: null,
-      id: []
+      inputMessage: null
     };
     this.onTextChange = this.onTextChange.bind(this);
   }
@@ -15,12 +14,12 @@ class ChattMsg extends React.Component {
     this.setState({ inputMessage: event.target.value });
   }
 
-  render() {
+  render() { console.log(localStorage.getItem("username"));
     return <div className="chatt-input">
       <input className="input-field" placeholder="Börja Chatta" onChange={this.onTextChange}></input>
       <button className="send-btn" onClick={() => {
         fetch('/api/gruppchatt', {
-          body: '{ "userId": "ObjectID?", "text": "' + this.state.inputMessage + '" }',
+          body: '{ "publicSender": "' + localStorage.getItem("username") + '", "publicText": "' + this.state.inputMessage + '" }',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -53,7 +52,7 @@ setInterval(function () {
   return response.json();
 }).then(function (result) {
     this.setState({
-      data: result.messagesCollection
+      data: result
     });
   }.bind(this))
 }.bind(this), 1000)
@@ -61,46 +60,70 @@ setInterval(function () {
 
 render() {
   return this.state.data.map(function (msg) {
-    return <p className="p-chatt-styling" key={msg._id}>Username: {msg.text}</p>;
+    return <p className="p-chatt-styling" key={msg._id}>{msg.publicSender}: {msg.publicText}</p>;
       }
     )
   }
+};
+
+class UsersList extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      usersData: []
+    };
+  }
+
+  componentDidMount() {
+      fetch('/api/inlogg').then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        this.setState({
+          usersData: result
+        });
+
+      }.bind(this))
+    }
+
+    render () {
+      return this.state.usersData.map(function (user) {
+                  return <li key={user._id}>{user.userName}</li>;
+                }
+              )
+            }
 }
 
 
+/* var Sidebar = createReactClass({
+  render: function(){
+    return <div className="container">
+            <h1>Friends</h1>
+            <div className="friendslist">
+                <ul>
+                    <li>Test1</li>
+                    <li>Test2</li>
+                    <li>Test3</li>
+                    <li>Test4</li>
+                </ul>
+            </div>
+      </div>
+  }
+});
+
+*/
 ReactDOM.render(
+  <div>
+  <div className="user-list-wrapper">
+    <ul>
+      <UsersList></UsersList>
+    </ul>
+  </div>
   <div className="chattwrapper">
     <div className="chattbox">
-      <MsgOutput></MsgOutput>
+    <MsgOutput></MsgOutput>
     </div>
     <ChattMsg></ChattMsg>
-  </div>,
+   </div>
+   </div>,
   document.getElementById('app')
  );
-
-
-// // gruppchatt.js:
-// module.exports = ChattMsg;
-//
-//
-// // I en annan fil:
-// // -----------------
-// // ett till exempel på hur man kan göra
-// module.exports = {
-//   ChattMsg: ChattMsg,
-//   MsgOutput: MsgOutput
-// };
-//
-// var ChattMsg = require('./gruppchatt').ChattMsg;
-// var MsgOutput = require('./gruppchatt').MsgOutput;
-//
-// // -----------------
-// // använd denna i index.js
-// var {ChattMsg, MsgOutput} = require('./gruppchatt');
-
-
-
-// var usersObject = {};
-// usersObject = users.forEach(function (user) {
-//   usersObject[user._id] = user;
-// });
