@@ -39,10 +39,12 @@ app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
 // })
 
 
-/*-------------------------------register---------------------------------*/
 
-  app.post('/api/register', function (request, response) {
-    db.collection('users').find({"userName": request.body.userName}).toArray(function (error, result) {
+/*-------------------------------inlogg---------------------------------*/
+
+app.post('/api/inlogg', function (request, response) {
+  db.collection('users').insert(request.body,
+    function (result, error) {
       if (error) {
         response.status(500).send(error);
         return;
