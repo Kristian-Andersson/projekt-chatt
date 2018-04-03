@@ -17,18 +17,24 @@ class Popup extends React.Component {
   }
 
   handleSubmit(event) {
-    fetch('/api/inlogg', {
+    fetch('/api/register', {
         body: '{ "userName": "' + this.state.value + '", "passWord": "' + this.state.value1 + '"}',
         headers: {
           'Content-Type': 'application/json'
         },
         method: 'POST'
       }).then(function (response) {
+        if (response.status == 409) {
+          alert('Användarnamn upptaget!');
+        } else if (response.status == 200) {
+          location.href='http://localhost:3000/inlogg.html';
+        };
         return response.json();
       });
 
       event.preventDefault();
-      location.href='http://localhost:3000/inlogg.html';
+
+
 
   }
     render() {

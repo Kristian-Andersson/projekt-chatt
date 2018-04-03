@@ -34,7 +34,7 @@ class NameForm extends React.Component {
       event.preventDefault();
 
       localStorage.setItem("username", this.state.value);
-
+      location.href="http://localhost:3000/gruppchatt";
     }
 
     render() {
