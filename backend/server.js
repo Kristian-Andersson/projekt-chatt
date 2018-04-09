@@ -40,17 +40,18 @@ app.use('/privatchatt', express.static(path.join(__dirname, '..', 'frontend')));
 
 
 
-/*-------------------------------inlogg---------------------------------*/
+/*-------------------------------register---------------------------------*/
 
-app.post('/api/inlogg', function (request, response) {
-  db.collection('users').insert(request.body,
-    function (result, error) {
-      if (error) {
-        response.status(500).send(error);
-        return;
-      } else if (result.length == 0) {
-        db.collection('users').insert(request.body,
-        function (error, result) {
+app.post('/api/register', function(request, response) {
+  db.collection('users').find({
+    "userName": request.body.userName
+  }).toArray(function(error, result) {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    } else if (result.length == 0) {
+      db.collection('users').insert(request.body,
+        function(error, result) {
           if (error) {
             response.status(500).send(error);
             return;
@@ -58,14 +59,14 @@ app.post('/api/inlogg', function (request, response) {
             response.send(result);
           }
         });
-      } else if (result.length >= 1) {
-        response.status(409).send();
-      }
-    })
-  });
+    } else if (result.length >= 1) {
+      response.status(409).send();
+    }
+  })
+});
 
-app.get('/api/register', function (request, response) {
-  db.collection('users').find({}).toArray(function (error, result) {
+app.get('/api/register', function(request, response) {
+  db.collection('users').find({}).toArray(function(error, result) {
     if (error) {
       response.status(500).send(error);
       return;
@@ -76,41 +77,31 @@ app.get('/api/register', function (request, response) {
 });
 
 
+
 /*-------------------------------inlogg---------------------------------*/
 
-app.post('/api/inlogg', function (request, response) {
-  db.collection('users').find({"userName": request.body.userName}).toArray(function (error, uResult) {
-    if (error) {
-      response.status(500).send(error);
-      return;
-    } else if (uResult.length && pResult.length == 1) {
-
-    } else if (uResult.length == 0) {
-      response.status(418).send();
-    }
-  });
-  db.collection('users').find({"passWord": request.body.passWord}).toArray(function (error, pResult) {
-    if (error) {
-      response.status(500).send(error);
-      return;
-    } else if (pResult.length && uResult.length == 1) {
-
-    } else if (pResult.length == 0) {
-      response.status(418).send();
-    }
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
+// app.post('/api/inlogg', function (request, response) {
+//   db.collection('users').find({"userName": request.body.userName}).toArray(function (error, uResult) {
+//     if (error) {
+//       response.status(500).send(error);
+//       return;
+//     } else if (uResult.length && pResult.length == 1) {
+//
+//     } else if (uResult.length == 0) {
+//       response.status(418).send();
+//     }
+//   });
+//   db.collection('users').find({"passWord": request.body.passWord}).toArray(function (error, pResult) {
+//     if (error) {
+//       response.status(500).send(error);
+//       return;
+//     } else if (pResult.length && uResult.length == 1) {
+//
+//     } else if (pResult.length == 0) {
+//       response.status(418).send();
+//     }
+//   });
+// });
 
 
 
@@ -129,16 +120,16 @@ app.post('/api/inlogg', function (request, response) {
 // });
 //
 //
-//   app.get('/api/inlogg', function (request, response) {
-//     db.collection('users').find({}).toArray(function (error, result) {
-//       if (error) {
-//         response.status(500).send(error);
-//         return;
-//       } else {
-//           response.send(result);
-//         }
-//       });
-//     });
+  app.get('/api/inlogg', function (request, response) {
+    db.collection('users').find({}).toArray(function (error, result) {
+      if (error) {
+        response.status(500).send(error);
+        return;
+      } else {
+          response.send(result);
+        }
+      });
+    });
 
 
 /*---------------------gruppchatten----------------------------------*/
